@@ -235,5 +235,18 @@ tbody:nth-child(5) .employeeКRow,
 tbody:nth-child(5) .mainRow {
     border-left: 3px solid var(--manager-color);
 }
+.month-switcher {
+    width: 230px;
+    display: flex;
+    justify-content: space-between;
+    margin: 30px;
+}
+.month-switcher__month{
+    padding: 10px;
+}
+.month-switcher__btn {
+    background-color: transparent;
+    padding: 10px;
+}
 @import url('./footer.css');
 @import url('./TeamItem.css');
