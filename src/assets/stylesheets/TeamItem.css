@@ -1,0 +1,172 @@
+tbody:nth-child(2) .employeeКRow,
+tbody:nth-child(2) .mainRow{
+    border-left: 3px solid rgb(155, 153, 255);
+}
+tbody:nth-child(3) .employeeКRow,
+tbody:nth-child(3) .mainRow{
+    border-left: 3px solid rgb(122, 175, 255);
+}
+tbody:nth-child(4) .employeeКRow,
+tbody:nth-child(4) .mainRow {
+    border-left: 3px solid rgb(255, 153, 153);
+}
+tbody:nth-child(5) .employeeКRow,
+tbody:nth-child(5) .mainRow {
+    border-left: 3px solid rgb(255, 167, 104);
+}
+tbody:nth-child(2) .percent {
+    background-color: rgb(155, 153, 255);
+}
+tbody:nth-child(3) .percent {
+    background-color: rgb(122, 175, 255);
+}
+tbody:nth-child(4) .percent {
+    background-color: rgb(255, 153, 153);
+}
+tbody:nth-child(5) .percent {
+    background-color: rgb(255, 167, 104);
+}
+.dayCell {
+    min-width: 33.64px;
+    position: relative;
+}
+.vacation-cell_paid {
+    border-right: none;
+    border-left: none;
+}
+.vacation-cell_paid:before,
+.vacation-cell_unpaid:before
+{
+    content: '';
+    display: block;
+    position: relative;
+    min-width: 33.64px;
+    min-height: 26px;
+}
+.vacation-cell_ui-start:before {
+    left: 2px;
+}
+.vacation-cell_ui-end:before {
+    right: 2px;
+}
+.vacation-cell_paid:before,
+.vacation-cell_unpaid:before{
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+}
+.vacation-cell_paid.vacation-cell_ui-start:before,
+.vacation-cell_unpaid.vacation-cell_ui-start:before{
+
+    border-radius: 3px 0 0 3px;
+}
+.vacation-cell_paid.vacation-cell_ui-end:before,
+.vacation-cell_unpaid.vacation-cell_ui-end:before{
+    /*right: 1px;*/
+    border-radius: 0 3px 3px 0;
+}
+.vacation-cell_unpaid.vacation-cell_ui-start:before,
+.vacation-cell_paid.vacation-cell_ui-start:before{
+    border-left: 1px solid transparent;
+}
+.vacation-cell_unpaid.vacation-cell_ui-end:before,
+.vacation-cell_paid.vacation-cell_ui-end:before {
+    border-right: 1px solid transparent;
+}
+
+.vacation-cell_ui-start.vacation-cell_ui-end:before {
+    max-width: 34px;
+    left: 1px;
+    border-radius: 3px;
+    margin-right: 1px;
+}
+tbody:nth-child(2) .vacation-cell_paid:before {
+    background-color: rgb(155, 153, 255);
+}
+tbody:nth-child(2) .vacation-cell_unpaid:before {
+    background-color: rgba(155, 153, 255, .1);
+}
+tbody:nth-child(2) .vacation-cell_paid:before,
+tbody:nth-child(2) .vacation-cell_unpaid:before {
+    border-color: rgb(155, 153, 255);
+}
+
+tbody:nth-child(3) .vacation-cell_paid:before {
+    background-color: rgb(122, 175, 255);
+}
+tbody:nth-child(3) .vacation-cell_unpaid:before {
+    background-color: rgba(122, 175, 255, .1);
+}
+tbody:nth-child(3) .vacation-cell_paid:before,
+tbody:nth-child(3) .vacation-cell_unpaid:before {
+    border-color: rgb(122, 175, 255);
+}
+
+tbody:nth-child(4) .vacation-cell_paid:before {
+    background-color: rgb(255, 153, 153);
+}
+tbody:nth-child(4) .vacation-cell_unpaid:before {
+    background-color: rgba(255, 153, 153, .1);
+}
+tbody:nth-child(4) .vacation-cell_paid:before,
+tbody:nth-child(4) .vacation-cell_unpaid:before {
+    border-color: rgb(255, 153, 153);
+}
+tbody:nth-child(5) .vacation-cell_paid:before {
+    background-color: rgb(255, 167, 104);
+}
+tbody:nth-child(5) .vacation-cell_unpaid:before {
+    background-color: rgba(255, 167, 104, .1);
+}
+tbody:nth-child(5) .vacation-cell_paid:before,
+tbody:nth-child(5) .vacation-cell_unpaid:before {
+    border-color: rgb(255, 167, 104);
+}
+tbody:nth-child(2) .vacation-cell_unpaid.vacation-cell_type-text:after {
+    color: rgb(155, 153, 255);
+}
+tbody:nth-child(3) .vacation-cell_unpaid.vacation-cell_type-text:after {
+    color: rgb(122, 175, 255);
+}
+tbody:nth-child(4) .vacation-cell_unpaid.vacation-cell_type-text:after {
+    color: rgb(255, 153, 153);
+}
+tbody:nth-child(5) .vacation-cell_unpaid.vacation-cell_type-text:after {
+    color: rgb(255, 167, 104);
+}
+.type-text {
+    position: relative;
+    color: #000;
+    font-size: 12px;
+    display: inline;
+    top: -23px;
+    z-index: 1;
+}
+.vacation-cell_unpaid.vacation-cell_type-text:after {
+    content: 'UnPd';
+}
+.vacation-cell_paid.vacation-cell_type-text:after {
+    content: 'Pd';
+    color: #fff;
+}
+.vacation-cell_type-text:after {
+    position: absolute;
+    color: #000;
+    font-size: 12px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+    top: 7px;
+    left: 0;
+    z-index: 1;
+}
+.vacation-cell_unpaid.vacation-cell_type-text_left_s:after {
+    left: 3px;
+}
+.vacation-cell_unpaid.vacation-cell_type-text_left_l:after {
+    left: 20px;
+}
+.vacation-cell_paid.vacation-cell_type-text_left_s:after {
+    left: 12px;
+}
+.vacation-cell_paid.vacation-cell_type-text_left_l:after {
+    left: 28px;
+}
