@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import {inputData} from "../inputData";
+import { inputData } from "../inputData";
+import { CalendarBody } from './CalendarBody';
 import classNames from 'classnames';
 import isWeekend from 'date-fns/isWeekend';
 import { format } from 'date-fns';
 import uniqid from "uniqid";
+import PropTypes from "prop-types";
 
 export function CalendarBase(props) {
     const { lastDayOfCurrentMonth } = props;
     const [departmentTeams, setDepartmentTeams] = useState({
-        data: {},
+        data: {
+            teams: [],
+            users: [],
+            vacations: []
+        },
         isLoading: true
     });
     //const [isLoading, setIsLoading] = useState(true);
@@ -37,6 +43,14 @@ export function CalendarBase(props) {
                 });
         }, 2000)
     }, []);
+    const getDepartmentsInfoByName = (dataName) => {
+        return departmentTeams.data[dataName];
+    }
+    const getTeamsNodeById = (dataName, id) => {
+        return departmentTeams.data[dataName].find((element) => {
+            return id === element.id;
+        });
+    }
     const CalendarHeader = () => {
         return (
             <thead>
@@ -71,11 +85,24 @@ export function CalendarBase(props) {
             </td>
         );
     }
+    HeaderDayCell.propTypes = {
+        cellDate: PropTypes.instanceOf(Date).isRequired
+    }
     return (
         <section className="calendar">
             <table className="calendar__table">
                 <CalendarHeader/>
+                { getDepartmentsInfoByName('teams').map((team) => {
+                    return <CalendarBody teamId={ team.id }
+                                         lastDayOfCurrentMonth={ lastDayOfCurrentMonth }
+                                         getDepartmentsInfoByName={ getDepartmentsInfoByName }
+                                         getTeamsNodeById={ getTeamsNodeById }
+                                         key={ team.id }/>
+                }) }
             </table>
         </section>
     );
+}
+CalendarBase.propTypes = {
+    lastDayOfCurrentMonth: PropTypes.instanceOf(Date).isRequired
 }
