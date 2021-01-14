@@ -1,5 +1,6 @@
 import React from 'react';
 import { MonthSwitcher } from 'Components/MonthSwitcher'
+import { CalendarBase } from './Components/CalendarBase';
 import lastDayOfMonth from 'date-fns/lastDayOfMonth';
 
 class App extends React.Component {
@@ -17,8 +18,11 @@ class App extends React.Component {
   }
   render() {
     return (
-      <MonthSwitcher lastDayOfCurrentMonth={ this.state.lastDayOfCurrentMonth }
-                     updateDate={ this.updateLastDayOfCurrentMonth }/>
+      <>
+        <MonthSwitcher lastDayOfCurrentMonth={ this.state.lastDayOfCurrentMonth }
+                       updateDate={ this.updateLastDayOfCurrentMonth }/>
+        <CalendarBase lastDayOfCurrentMonth={ this.state.lastDayOfCurrentMonth }/>
+      </>
     )
   }
 }
