@@ -1,6 +1,7 @@
 import React from 'react';
 import uniqid from "uniqid";
 import PropTypes from "prop-types";
+import { CalendarUser } from 'Components/CalendarUser';
 
 export function CalendarBody(props) {
     const {
@@ -17,7 +18,8 @@ export function CalendarBody(props) {
         }
         return accumulator;
     }, []);
-
+    //add toggling users visability by chevron
+    //maybe separate headers without re-render
     return (
         <tbody>
             <tr className="mainRow">
@@ -38,6 +40,13 @@ export function CalendarBody(props) {
                     return <td className="teamInfo" key={uniqid()}></td>
                 }) }
             </tr>
+            { participants.map((userId) => {
+                return <CalendarUser key={ userId }
+                                     userId={ userId }
+                                     lastDayOfCurrentMonth={ lastDayOfCurrentMonth }
+                                     getDepartmentsInfoByName={ getDepartmentsInfoByName }
+                                     getTeamsNodeById={ getTeamsNodeById } />
+            }) }
         </tbody>
     );
 }
