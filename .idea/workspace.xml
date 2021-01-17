@@ -20,17 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07406c74-6905-4123-82d5-9ffb93ada7b9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Components/CalendarBase.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/CalendarBody.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/ModalWindow.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/stylesheets/ModalWindow.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/inputData.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/ModalWindow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ModalWindow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/stylesheets/ModalWindow.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/stylesheets/ModalWindow.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/stylesheets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/stylesheets/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,7 +69,11 @@
       <updated>1610538194365</updated>
       <workItem from="1610538195876" duration="2113000" />
       <workItem from="1610638433630" duration="5870000" />
-      <workItem from="1610705006505" duration="5907000" />
+      <workItem from="1610705006505" duration="6585000" />
+      <workItem from="1610715337847" duration="330000" />
+      <workItem from="1610722935753" duration="853000" />
+      <workItem from="1610724136099" duration="1137000" />
+      <workItem from="1610884032895" duration="442000" />
     </task>
     <servers />
   </component>

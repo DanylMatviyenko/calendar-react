@@ -5,7 +5,7 @@ export default function ModalWindow(props) {
     state = { modalOpen: false }
 
     handleOpen = () => this.setState({ modalOpen: true })
-    handleOpen = () => this.setState({ modalOpen: false })
+    handleClose = () => this.setState({ modalOpen: false })
 
     return (
         <ModalWindow>
@@ -53,8 +53,8 @@ export default function ModalWindow(props) {
                 </div>
 
                 <div className="popup__foot">
-                    <button className="popup__cancel-btn button btn">Cancel</button>
-                    <button className="popup__accept-btn button btn-success">Send</button>
+                    <button onClick={this.handleClose} className="popup__cancel-btn button btn">Cancel</button>
+                    <button onClick={this.handleClose} className="popup__accept-btn button btn-success">Send</button>
                 </div>
             </div>
         </ModalWindow>
