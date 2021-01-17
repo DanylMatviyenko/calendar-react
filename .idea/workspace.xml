@@ -21,9 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="07406c74-6905-4123-82d5-9ffb93ada7b9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/ModalWindow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ModalWindow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +72,7 @@
       <workItem from="1610715337847" duration="330000" />
       <workItem from="1610722935753" duration="853000" />
       <workItem from="1610724136099" duration="1137000" />
-      <workItem from="1610884032895" duration="2869000" />
+      <workItem from="1610884032895" duration="5200000" />
     </task>
     <servers />
   </component>
