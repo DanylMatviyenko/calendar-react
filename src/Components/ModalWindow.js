@@ -1,62 +1,69 @@
 import React, { Component } from 'react';
-import classNames from 'classnames';
+import '../assets/stylesheets/ModalWindow.css';
+import { Button, Modal } from 'semantic-ui-react';
 
-export default function ModalWindow(props) {
+export default class MyNewModal extends Component {
     state = { modalOpen: false }
 
-    handleOpen = () => this.setState({ modalOpen: true })
-    handleClose = () => this.setState({ modalOpen: false })
+    handleOpen = () => this.setState({ modalOpen: true });
+    handleClose = () => this.setState({ modalOpen: false });
 
-    return (
-        <ModalWindow>
-            <div className="popup">
-                <div className="popup__head">
-                    <h2 className="popup__title">Vacation Request</h2>
-                    <div className="popup__days-counter">
-                        {{this.dateService.vacationDaysSum}}
-                        <span>Days</span>
-                    </div>
-                </div>
-
-                <div className="popup__body">
-                    <div className="popup__dates-info">
-                        <h3 className="popup__subtitle">Dates</h3>
-                        <div className="popup__inputs-wrapper">
-                            <div className="popup__date-input">
-                                <label htmlFor="dateFrom">From</label>
-                                <input className="popup__dateFrom" id="dateFrom" type="date"
-                                (change)="this.dateService.getVacationDatesRange($event)"
-                                [value]="this.dateService.startDate"
-                                >
-                            </div>
-                            <div className=" popup__date-input">
-                                <label for=" dateTo">To</label>
-                                <input className=" popup__dateTo" id=" dateTo" type=" date"
-                                (change)=" this.dateService.getVacationDatesRange($event)"
-                                [value]="this.dateService.endDate"
-                                >
-                            </div>
+    render() {
+        return (
+            <Modal
+                trigger={<Button onClick={this.handleOpen}>+ Add Vacation</Button>}
+                open={this.state.modalOpen}
+                onClose={this.handleClose}
+                basic
+                size='small'
+            >
+                <Modal.Content>
+                    <div className="modalBackground" onClick={this.handleClose}>
+                        <div className="loadingWindow">
+                            <p className="loadingWindow__text">Loading...</p>
+                        </div>
+                        <div className="inputForm form__container" onClick={this.handleClose}>
+                            <form className="form" id="">
+                                <div className="form__header">
+                                    <h3 className="form__title">Vacation Request</h3>
+                                    <div className="form__days-counter">
+                                        <p className="form__days-text">8 Days</p>
+                                    </div>
+                                </div>
+                                <div className="form__body">
+                                    <div className="form__dates-subtitle">
+                                        <h4>Dates</h4>
+                                    </div>
+                                    <div className="form__inputs-group">
+                                        <div className="form__input-wrapper">
+                                            <label>From</label>
+                                            <input className="form__input-from form__input" type="date"/>
+                                        </div>
+                                        <div className="form__input-wrapper">
+                                            <label>To</label>
+                                            <input className="form__input-to form__input" type="date"/>
+                                        </div>
+                                        <div className="form__select-wrapper">
+                                            <div className="form__dates-subtitle">
+                                                <h4>Vac Type</h4>
+                                            </div>
+                                            <select form="form" name="" id="" className="form__select">
+                                                <option>Paid Day Off (PD)</option>
+                                                <option>Unpaid Day (UD)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="form__footer">
+                                    <button className="form__cancel-btn form__btn" onClick={this.handleClose}>Cancel
+                                    </button>
+                                    <button className="form__send-btn form__btn" onClick={this.handleClose}>Send</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
-
-                    <div className=" popup__vacation-info">
-                        <h3 className=" popup__subtitle">Vac Type</h3>
-                        <select className=" popup__vacation-type" name=" vacation-type" id=" vacation-type">
-			                <option className=" popup__vacation-option" value=" Paid Day Off (PD)">
-                                Paid Day Off (PD)
-                            </option>
-                            <option className="popup__vacation-option" value="Unpaid Day Off (UD)">
-                                Unpaid Day Off (UD)
-                            </option>
-                        </select>
-                    </div>
-                </div>
-
-                <div className="popup__foot">
-                    <button onClick={this.handleClose} className="popup__cancel-btn button btn">Cancel</button>
-                    <button onClick={this.handleClose} className="popup__accept-btn button btn-success">Send</button>
-                </div>
-            </div>
-        </ModalWindow>
-    );
+                </Modal.Content>
+            </Modal>
+        );
+    }
 }

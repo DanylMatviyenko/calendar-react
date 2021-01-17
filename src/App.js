@@ -2,7 +2,7 @@ import React from 'react';
 import { MonthSwitcher } from 'Components/MonthSwitcher';
 import { CalendarBase } from './Components/CalendarBase';
 import lastDayOfMonth from 'date-fns/lastDayOfMonth';
-import { ModalWindow } from 'Components/ModalWindow';
+import { ModalWindow } from './Components/ModalWindow';
 
 class App extends React.Component {
   constructor(props) {
