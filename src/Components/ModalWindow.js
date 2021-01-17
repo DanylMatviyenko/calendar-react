@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../assets/stylesheets/ModalWindow.css';
 import { Button, Modal } from 'semantic-ui-react';
 
-export default class MyNewModal extends Component {
+export default class ModalWindow extends Component {
     state = { modalOpen: false }
 
     handleOpen = () => this.setState({ modalOpen: true });
