@@ -2,13 +2,15 @@ import React from 'react';
 import PropTypes from "prop-types";
 import { formatInputToDate } from 'utils/Date'
 import { VacationDayCells } from 'Components/VacationDayCells';
+import classNames from 'classnames';
 
 export function CalendarUser(props) {
     const {
         userId,
         lastDayOfCurrentMonth,
         getDepartmentsInfoByName,
-        getTeamsNodeById
+        getTeamsNodeById,
+        isTeamUsersHide
     } = props;
     const user = getTeamsNodeById('users', userId);
     const userVacations = getDepartmentsInfoByName('vacations').filter((vacation) => {
@@ -48,10 +50,14 @@ export function CalendarUser(props) {
     const filteredVacationsForCurrentMonth = generateCurrentMonthVacationSets(userVacations, lastDayOfCurrentMonth);
 
     return (
-        <tr className="team-user">
+        <tr className={ classNames(
+            'employeeКRow',
+            { hide: isTeamUsersHide }
+        )}>
             <td className="nameCell">{ user.name }</td>
             { <VacationDayCells filteredVacationsForCurrentMonth={ filteredVacationsForCurrentMonth }
-                                lastDayOfCurrentMonth={ lastDayOfCurrentMonth }/>
+                                lastDayOfCurrentMonth={ lastDayOfCurrentMonth }
+                                userId={ userId }/>
             }
         </tr>
     );
@@ -60,5 +66,6 @@ CalendarUser.propTypes = {
     userId: PropTypes.number.isRequired,
     lastDayOfCurrentMonth: PropTypes.instanceOf(Date).isRequired,
     getDepartmentsInfoByName: PropTypes.func.isRequired,
-    getTeamsNodeById: PropTypes.func.isRequired
+    getTeamsNodeById: PropTypes.func.isRequired,
+    isTeamUsersHide: PropTypes.bool.isRequired
 }

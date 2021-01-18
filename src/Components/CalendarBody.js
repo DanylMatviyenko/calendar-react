@@ -1,6 +1,7 @@
-import React from 'react';
-import uniqid from "uniqid";
-import PropTypes from "prop-types";
+import React, { useState } from 'react';
+import uniqid from 'uniqid';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { CalendarUser } from 'Components/CalendarUser';
 
 export function CalendarBody(props) {
@@ -10,6 +11,7 @@ export function CalendarBody(props) {
         getDepartmentsInfoByName,
         getTeamsNodeById
     } = props;
+    const [isTeamUsersHide, setIsTeamUsersHide] = useState(false);
     const team = getTeamsNodeById('teams', teamId);
 
     const participants = getDepartmentsInfoByName('users').reduce((accumulator, currentValue) => {
@@ -18,8 +20,9 @@ export function CalendarBody(props) {
         }
         return accumulator;
     }, []);
-    //add toggling users visability by chevron
-    //maybe separate headers without re-render
+    const toggleUsersVisibility = () => {
+        setIsTeamUsersHide(!isTeamUsersHide);
+    }
     return (
         <tbody>
             <tr className="mainRow">
@@ -30,8 +33,13 @@ export function CalendarBody(props) {
                             <i className="fas fa-users"></i>
                             <span>{ participants.length }</span>
                             <div className="percent">{ team.percentageOfAbsent[lastDayOfCurrentMonth.getMonth()] }%</div>
-                            <button>
-                                <i className="fas chevronBtn fa-chevron-up"></i>
+                            <button onClick={ toggleUsersVisibility }>
+                                <i className={classNames(
+                                    'fas',
+                                    'fa-chevron-up',
+                                    'chevronBtn',
+                                    { rotateChevron: isTeamUsersHide }
+                                )}></i>
                             </button>
                         </div>
                     </div>
@@ -45,7 +53,8 @@ export function CalendarBody(props) {
                                      userId={ userId }
                                      lastDayOfCurrentMonth={ lastDayOfCurrentMonth }
                                      getDepartmentsInfoByName={ getDepartmentsInfoByName }
-                                     getTeamsNodeById={ getTeamsNodeById } />
+                                     getTeamsNodeById={ getTeamsNodeById }
+                                     isTeamUsersHide={ isTeamUsersHide }/>
             }) }
         </tbody>
     );

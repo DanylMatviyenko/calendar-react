@@ -6,25 +6,17 @@ import PropTypes from "prop-types";
 import StatisticContext from "../context/StatisticFooterProvider";
 
 export function VacationDayCells(props) {
-    const { teamStatisticList, setTeamStatisticList } = useContext(StatisticContext)
-    useEffect(() => {
-        setTeamStatisticList(teamStatisticList);
-        //console.log(teamStatisticList);
-    }, [teamStatisticList, setTeamStatisticList]);
+    const { teamStatisticList ,setTeamStatisticList } = useContext(StatisticContext)
     const {
         filteredVacationsForCurrentMonth,
-        lastDayOfCurrentMonth
+        lastDayOfCurrentMonth,
+        userId
     } = props;
     let vacationSum = 0;
-
-/*    const incrementStatByIndex = (statIndex) => {
-        const newTeamStatisticList = this.state.teamStatisticList;
-        newTeamStatisticList[statIndex] += 1;
-        this.setState({
-            teamStatisticList: newTeamStatisticList
-        });
-        console.log(this.state.teamStatisticList);
-    }*/
+    const currentUserVacationIndexes = new Set();
+    useEffect(() => {
+        setTeamStatisticList(teamStatisticList);
+    }, [teamStatisticList ,setTeamStatisticList]);
 
     const createDayCells = (filteredVacationsForCurrentMonth, lastDayOfCurrentMonth) => {
         const dayCells = [];
@@ -36,13 +28,14 @@ export function VacationDayCells(props) {
             );
             const cellInfo = getCellInfo(iDate, filteredVacationsForCurrentMonth);
             if (cellInfo.isVacation && !cellInfo.isWeekend) {
-                //this.statisticService.updateStatistic(i - 1);
-                //debugger
-                teamStatisticList[indexElem] += 1;
+                currentUserVacationIndexes.add(indexElem);
                 ++vacationSum;
             }
             dayCells.push(cellInfo);
         })
+        if (currentUserVacationIndexes.size !== 0) {
+            teamStatisticList.set(userId, currentUserVacationIndexes);
+        }
         addVacationInfoText(dayCells);
         return dayCells;
     };
@@ -129,5 +122,6 @@ export function VacationDayCells(props) {
 }
 VacationDayCells.propTypes = {
     lastDayOfCurrentMonth: PropTypes.instanceOf(Date).isRequired,
-    filteredVacationsForCurrentMonth: PropTypes.array.isRequired
+    filteredVacationsForCurrentMonth: PropTypes.array.isRequired,
+    userId: PropTypes.number.isRequired
 }

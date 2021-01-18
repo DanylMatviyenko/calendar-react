@@ -1,5 +1,5 @@
 import React from 'react';
-import isWeekend from "date-fns/isWeekend";
+import compareAsc from 'date-fns/compareAsc';
 import PropTypes from "prop-types";
 
 const StatisticContext = React.createContext();
@@ -9,26 +9,19 @@ export class StatisticFooterProvider extends React.Component {
         super(props);
 
         this.state = {
-            teamStatisticList: this.fillStatisticsList(props.lastDayOfCurrentMonth)
+            teamStatisticList: new Map()
+        }
+    }
+    componentDidUpdate(prevProps) {
+        if (compareAsc(this.props.lastDayOfCurrentMonth, prevProps.lastDayOfCurrentMonth) !== 0) {
+            this.setState( {
+                teamStatisticList: new Map()
+            } );
         }
     }
     setTeamStatisticList = (teamStatisticList) => {
         this.setState({
             teamStatisticList
-        });
-        console.log(this.state.teamStatisticList);
-    }
-    fillStatisticsList = (lastDayOfCurrentMonth) =>  {
-        return [...Array(lastDayOfCurrentMonth.getDate()).keys()].map((elemIndex) => {
-            const iDate = new Date(
-                lastDayOfCurrentMonth.getFullYear(),
-                lastDayOfCurrentMonth.getMonth(),
-                ++elemIndex
-            );
-            if (isWeekend(iDate)) {
-                return '';
-            }
-            return 0;
         });
     }
     render() {

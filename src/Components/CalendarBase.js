@@ -7,20 +7,16 @@ import { format } from 'date-fns';
 import uniqid from "uniqid";
 import PropTypes from "prop-types";
 import { StatisticFooterProvider } from "../context/StatisticFooterProvider";
+import { StatisticFooter } from "./StatisticFooter";
 
 export function CalendarBase(props) {
-    const { lastDayOfCurrentMonth } = props;
+    const { lastDayOfCurrentMonth, toggleLoadingState, toggleFormVisibility } = props;
     const [departmentTeams, setDepartmentTeams] = useState({
-        data: {
-            teams: [],
-            users: [],
-            vacations: []
-        },
-        isLoading: true
+        teams: [],
+        users: [],
+        vacations: []
     });
-    //const [isLoading, setIsLoading] = useState(true);
 
-    //handle request errors
     useEffect(() => {
         const getTeamsData = () => {
             return fetch('https://jsonplaceholder.typicode.com/posts', {
@@ -36,20 +32,18 @@ export function CalendarBase(props) {
                 .then((response) => response.json())
                 .then((dataObj) => {
                     if(Object.keys(dataObj).length !== 0) {
-                        setDepartmentTeams({
-                            data: dataObj[0],
-                            isLoading: false
-                        });
+                        setDepartmentTeams(dataObj[0]);
+                        toggleLoadingState();
                     }
-                });
-            //update to 2000
-        }, 0)
-    }, []);
+                })
+                .catch(error => console.log(new Error(error.message)));
+        }, 3000)
+    }, [toggleFormVisibility, toggleLoadingState]);
     const getDepartmentsInfoByName = (dataName) => {
-        return departmentTeams.data[dataName];
+        return departmentTeams[dataName];
     }
     const getTeamsNodeById = (dataName, id) => {
-        return departmentTeams.data[dataName].find((element) => {
+        return departmentTeams[dataName].find((element) => {
             return id === element.id;
         });
     }
@@ -58,7 +52,8 @@ export function CalendarBase(props) {
             <thead>
                 <tr className="outputCalendar">
                     <td className="addVacationCell outputItem ">
-                        <button className="addVacationBtn"><span>+</span>Add Vacation</button>
+                        <button className="addVacationBtn"
+                                onClick={ toggleFormVisibility }><span>+</span>Add Vacation</button>
                     </td>
                     { [...Array(lastDayOfCurrentMonth.getDate()).keys()].map((element) => {
                         const iDate = new Date(
@@ -102,11 +97,13 @@ export function CalendarBase(props) {
                                              getTeamsNodeById={ getTeamsNodeById }
                                              key={ team.id }/>
                     }) }
+                    <StatisticFooter lastDayOfCurrentMonth={ lastDayOfCurrentMonth }/>
                 </StatisticFooterProvider>
             </table>
         </section>
     );
 }
 CalendarBase.propTypes = {
-    lastDayOfCurrentMonth: PropTypes.instanceOf(Date).isRequired
+    lastDayOfCurrentMonth: PropTypes.instanceOf(Date).isRequired,
+    toggleLoadingState: PropTypes.func.isRequired
 }

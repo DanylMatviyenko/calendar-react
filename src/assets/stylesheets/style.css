@@ -1,5 +1,5 @@
 /* variables */
-
+/* CSS практически полностью взят из js-проекта, Даниил и Виталий вносили минимальные изменения */
 :root {
     --front-color: #9b99ff;
     --designer-color: #7aafff;
@@ -22,7 +22,7 @@ body {
     box-sizing: border-box;
 }
 
-#root {
+.wrapper {
     width: 100vw;
     min-height: 100vh;
     display: flex;
@@ -250,5 +250,12 @@ tbody:nth-child(5) .mainRow {
     background-color: transparent;
     padding: 10px;
 }
+.hide {
+    display: none;
+}
+.rotateChevron {
+    transform: rotateX(180deg);
+}
 @import url('./footer.css');
 @import url('./TeamItem.css');
+@import url('./ModalWindow.css');
