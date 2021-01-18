@@ -6,6 +6,7 @@ import isWeekend from 'date-fns/isWeekend';
 import { format } from 'date-fns';
 import uniqid from "uniqid";
 import PropTypes from "prop-types";
+import { StatisticFooterProvider } from "../context/StatisticFooterProvider";
 
 export function CalendarBase(props) {
     const { lastDayOfCurrentMonth } = props;
@@ -41,7 +42,8 @@ export function CalendarBase(props) {
                         });
                     }
                 });
-        }, 2000)
+            //update to 2000
+        }, 0)
     }, []);
     const getDepartmentsInfoByName = (dataName) => {
         return departmentTeams.data[dataName];
@@ -91,14 +93,16 @@ export function CalendarBase(props) {
     return (
         <section className="calendar">
             <table className="calendar__table">
-                <CalendarHeader/>
-                { getDepartmentsInfoByName('teams').map((team) => {
-                    return <CalendarBody teamId={ team.id }
-                                         lastDayOfCurrentMonth={ lastDayOfCurrentMonth }
-                                         getDepartmentsInfoByName={ getDepartmentsInfoByName }
-                                         getTeamsNodeById={ getTeamsNodeById }
-                                         key={ team.id }/>
-                }) }
+                <StatisticFooterProvider lastDayOfCurrentMonth={ lastDayOfCurrentMonth }>
+                    <CalendarHeader/>
+                    { getDepartmentsInfoByName('teams').map((team) => {
+                        return <CalendarBody teamId={ team.id }
+                                             lastDayOfCurrentMonth={ lastDayOfCurrentMonth }
+                                             getDepartmentsInfoByName={ getDepartmentsInfoByName }
+                                             getTeamsNodeById={ getTeamsNodeById }
+                                             key={ team.id }/>
+                    }) }
+                </StatisticFooterProvider>
             </table>
         </section>
     );

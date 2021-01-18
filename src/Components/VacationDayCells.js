@@ -1,15 +1,30 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import uniqid from "uniqid";
 import isWeekend from "date-fns/isWeekend";
 import classNames from 'classnames';
 import PropTypes from "prop-types";
+import StatisticContext from "../context/StatisticFooterProvider";
 
 export function VacationDayCells(props) {
+    const { teamStatisticList, setTeamStatisticList } = useContext(StatisticContext)
+    useEffect(() => {
+        setTeamStatisticList(teamStatisticList);
+        //console.log(teamStatisticList);
+    }, [teamStatisticList, setTeamStatisticList]);
     const {
         filteredVacationsForCurrentMonth,
         lastDayOfCurrentMonth
     } = props;
     let vacationSum = 0;
+
+/*    const incrementStatByIndex = (statIndex) => {
+        const newTeamStatisticList = this.state.teamStatisticList;
+        newTeamStatisticList[statIndex] += 1;
+        this.setState({
+            teamStatisticList: newTeamStatisticList
+        });
+        console.log(this.state.teamStatisticList);
+    }*/
 
     const createDayCells = (filteredVacationsForCurrentMonth, lastDayOfCurrentMonth) => {
         const dayCells = [];
@@ -17,11 +32,13 @@ export function VacationDayCells(props) {
             const iDate = new Date(
                 lastDayOfCurrentMonth.getFullYear(),
                 lastDayOfCurrentMonth.getMonth(),
-                ++indexElem
+                indexElem + 1
             );
             const cellInfo = getCellInfo(iDate, filteredVacationsForCurrentMonth);
             if (cellInfo.isVacation && !cellInfo.isWeekend) {
                 //this.statisticService.updateStatistic(i - 1);
+                //debugger
+                teamStatisticList[indexElem] += 1;
                 ++vacationSum;
             }
             dayCells.push(cellInfo);
